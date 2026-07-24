@@ -1,0 +1,143 @@
+[
+  {
+    "id": "POL-TRAVEL",
+    "title": "Corporate Travel Policy",
+    "paragraphs": [
+      { "id": "POL-TRAVEL-1", "text": "All business trips must be pre-approved by the department head. Approval requests must be submitted at least 5 business days before the planned departure date." },
+      { "id": "POL-TRAVEL-2", "text": "Accommodation expenses are reimbursed up to $250 per night for domestic travel and $350 per night for international travel. Receipts are required for all claims." },
+      { "id": "POL-TRAVEL-3", "text": "Meal per diem is $35 per day for domestic travel and $50 per day for international travel. No receipts needed for per diem claims." },
+      { "id": "POL-TRAVEL-4", "text": "Transportation costs including flights, trains, and taxis are fully reimbursable. Business class is permitted for flights over 6 hours." },
+      { "id": "POL-TRAVEL-5", "text": "Fuel reimbursement for personal vehicle use during business travel is capped at 60 litres per trip. Mileage rate is $0.72 per kilometre." }
+    ]
+  },
+  {
+    "id": "POL-TRAINING",
+    "title": "Training and Development Policy",
+    "paragraphs": [
+      { "id": "POL-TRAINING-1", "text": "Employees may claim reimbursement for approved professional development courses up to $5,000 per financial year." },
+      { "id": "POL-TRAINING-2", "text": "Conference attendance costs including registration fees, travel, and accommodation are reimbursable upon submission of an expense report." },
+      { "id": "POL-TRAINING-3", "text": "Online course subscriptions and certification exam fees are eligible for reimbursement with manager approval." },
+      { "id": "POL-TRAINING-4", "text": "Training reimbursement requires submission of completion certificate or proof of attendance." }
+    ]
+  },
+  {
+    "id": "POL-EQUIPMENT",
+    "title": "Equipment and Supplies Policy",
+    "paragraphs": [
+      { "id": "POL-EQUIP-1", "text": "Office equipment purchases over $500 require prior approval from the department head." },
+      { "id": "POL-EQUIP-2", "text": "Standard workstation setup includes a laptop, monitor, keyboard, and mouse. Upgrades must be approved by IT." },
+      { "id": "POL-EQUIP-3", "text": "Software licenses and subscriptions must be procured through the IT department. Direct purchases are not reimbursable." }
+    ]
+  },
+  {
+    "id": "POL-ENTERTAINMENT",
+    "title": "Gifts and Entertainment Policy",
+    "paragraphs": [
+      { "id": "POL-ENTERT-1", "text": "Client entertainment expenses up to $150 per person are reimbursable with itemised receipts." },
+      { "id": "POL-ENTERT-2", "text": "Gifts to clients or partners must not exceed $100 per recipient per occasion. Cash gifts are strictly prohibited." },
+      { "id": "POL-ENTERT-3", "text": "Corporate card use for personal purchases is prohibited. Any personal charges must be reimbursed within 30 days." }
+    ]
+  },
+  {
+    "id": "POL-CARD",
+    "title": "Corporate Card Usage Policy",
+    "paragraphs": [
+      { "id": "POL-CARD-1", "text": "The corporate card is to be used exclusively for business-related expenses. Personal use is strictly prohibited." },
+      { "id": "POL-CARD-2", "text": "All corporate card transactions must be reconciled within 30 days of the statement date." },
+      { "id": "POL-CARD-3", "text": "Cash advances via corporate card are not permitted. Suspicious transactions will be flagged for review." },
+      { "id": "POL-CARD-4", "text": "Lost or stolen cards must be reported immediately. Cardholders are liable for unauthorised transactions until reported." }
+    ]
+  },
+  {
+    "id": "POL-REPORTING",
+    "title": "Expense Reporting Policy",
+    "paragraphs": [
+      { "id": "POL-REPORT-1", "text": "Expense reports must be submitted within 30 days of the expense date. Late submissions may result in delayed reimbursement." },
+      { "id": "POL-REPORT-2", "text": "Receipts are required for all expenses over $25. Digital copies are accepted." },
+      { "id": "POL-REPORT-3", "text": "All expense reports must be approved by the direct manager before processing." },
+      { "id": "POL-REPORT-4", "text": "Foreign currency transactions must be reported in the original currency with the exchange rate used." }
+    ]
+  },
+  {
+    "id": "POL-VEHICLE",
+    "title": "Personal Vehicle Usage Policy",
+    "paragraphs": [
+      { "id": "POL-VEHICLE-1", "text": "Employees using personal vehicles for business purposes are reimbursed at $0.72 per kilometre." },
+      { "id": "POL-VEHICLE-2", "text": "Fuel costs are reimbursed up to 60 litres per trip. Receipts must be provided." },
+      { "id": "POL-VEHICLE-3", "text": "Tolls and parking fees incurred during business travel are fully reimbursable with receipts." }
+    ]
+  },
+  {
+    "id": "POL-REMOTE",
+    "title": "Remote Work Policy",
+    "paragraphs": [
+      { "id": "POL-REMOTE-1", "text": "Remote employees may claim reimbursement for home office setup up to $1,000 per year." },
+      { "id": "POL-REMOTE-2", "text": "Internet and phone allowances are $50 per month for partially remote staff and $100 per month for fully remote staff." }
+    ]
+  },
+  {
+    "id": "POL-RELOCATION",
+    "title": "Relocation Policy",
+    "paragraphs": [
+      { "id": "POL-RELOC-1", "text": "Relocation expenses including moving services, temporary accommodation, and travel are reimbursed up to $15,000." },
+      { "id": "POL-RELOC-2", "text": "Rent assistance of up to $500 per month is available for 3 months following relocation." }
+    ]
+  },
+  {
+    "id": "POL-PROCUREMENT",
+    "title": "Procurement Policy",
+    "paragraphs": [
+      { "id": "POL-PROC-1", "text": "Purchases over $10,000 require three competitive quotes and procurement committee approval." },
+      { "id": "POL-PROC-2", "text": "Emergency purchases without prior approval are limited to $5,000 per occurrence." },
+      { "id": "POL-PROC-3", "text": "All procurement must follow the approved vendor list. Exceptions require procurement manager approval." }
+    ]
+  },
+  {
+    "id": "POL-AUDIT",
+    "title": "Financial Audit Policy",
+    "paragraphs": [
+      { "id": "POL-AUDIT-1", "text": "All expense reports are subject to random audit. Audit selection is risk-based." },
+      { "id": "POL-AUDIT-2", "text": "Falsified expense claims will result in disciplinary action up to and including termination." }
+    ]
+  },
+  {
+    "id": "POL-CONFLICT",
+    "title": "Conflicts of Interest Policy",
+    "paragraphs": [
+      { "id": "POL-CONFLICT-1", "text": "Employees must disclose any personal interest in a supplier or vendor before engaging in procurement." },
+      { "id": "POL-CONFLICT-2", "text": "Accepting gifts or favours from suppliers valued over $50 must be reported to compliance." }
+    ]
+  },
+  {
+    "id": "POL-DATA",
+    "title": "Data and Confidentiality Policy",
+    "paragraphs": [
+      { "id": "POL-DATA-1", "text": "Financial statements and internal data must not be shared with external parties without authorisation." },
+      { "id": "POL-DATA-2", "text": "Data breaches or suspected information leaks must be reported to IT security within 1 hour." }
+    ]
+  },
+  {
+    "id": "POL-CASHOUT",
+    "title": "Cash Handling Policy",
+    "paragraphs": [
+      { "id": "POL-CASHOUT-1", "text": "Cash withdrawals disguised as discounts, service fees, or refunds are considered fraud and will be investigated." },
+      { "id": "POL-CASHOUT-2", "text": "Any transaction involving cash-back, cash-out, or ATM withdrawal on corporate cards must be pre-approved." }
+    ]
+  },
+  {
+    "id": "POL-CONFERENCE",
+    "title": "Conference Attendance Policy",
+    "paragraphs": [
+      { "id": "POL-CONF-1", "text": "Conference attendance requires manager approval and must be directly relevant to the employee's role." },
+      { "id": "POL-CONF-2", "text": "Travel, accommodation, and registration for approved conferences are fully reimbursable." }
+    ]
+  },
+  {
+    "id": "POL-OFFICE",
+    "title": "Office Supplies Policy",
+    "paragraphs": [
+      { "id": "POL-OFFICE-1", "text": "Standard office supplies (stationery, paper, ink) are provided by the office manager and should not be expensed individually." },
+      { "id": "POL-OFFICE-2", "text": "Specialised equipment or furniture requires facilities team approval before purchase." }
+    ]
+  }
+]

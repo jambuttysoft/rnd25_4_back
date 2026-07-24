@@ -1,0 +1,12 @@
+{
+  "travel": ["business trip", "travel", "trip", "journey", "itinerary", "traveling"],
+  "hotel": ["hotel", "accommodation", "lodging", "stay", "motel", "booking"],
+  "meal": ["meal", "food", "lunch", "dinner", "breakfast", "dining", "restaurant"],
+  "transport": ["taxi", "transport", "transit", "ride", "uber", "cab", "shuttle"],
+  "training": ["training", "course", "seminar", "workshop", "conference", "certification"],
+  "equipment": ["equipment", "laptop", "monitor", "keyboard", "hardware", "device"],
+  "report": ["expense report", "claim", "reimbursement", "filing", "submission"],
+  "fuel": ["fuel", "petrol", "gas", "gasoline", "diesel", "refuel"],
+  "gift": ["gift", "present", "entertainment", "client", "hospitality"],
+  "approval": ["approval", "authorisation", "consent", "pre-approval", "permission"]
+}
