@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { ocrRouter } from './routes/ocr.js';
 import { ragRouter } from './routes/rag.js';
@@ -29,13 +30,21 @@ app.use('/api/ocr', ocrRouter);
 app.use('/api/rag', ragRouter);
 app.use('/api/pipeline', pipelineRouter);
 
-// In production, serve static frontend
+// In production, serve static frontend if available
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const distPath = path.resolve(__dirname, '../../dist-web');
-app.use(express.static(distPath));
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
-});
+const distPath = process.env.DIST_WEB_PATH || path.resolve(__dirname, '../../dist-web');
+const indexPath = path.join(distPath, 'index.html');
+
+if (fs.existsSync(indexPath)) {
+  app.use(express.static(distPath));
+  app.get('*', (_req, res) => {
+    res.sendFile(indexPath);
+  });
+} else {
+  app.get('*', (_req, res) => {
+    res.status(404).json({ error: 'Not found' });
+  });
+}
 
 app.use(errorHandler);
 
