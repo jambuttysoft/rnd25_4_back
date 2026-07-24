@@ -12,7 +12,22 @@ import { errorHandler } from './middleware/errorHandler.js';
 const app = express();
 const PORT = parseInt(process.env.PORT || '3001', 10);
 
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:4173'], credentials: true }));
+const allowedOrigins = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',').map((o) => o.trim())
+  : null;
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (!allowedOrigins || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+        return callback(null, origin);
+      }
+      return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
@@ -41,8 +56,16 @@ if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
   });
 } else {
+  app.get('/', (_req, res) => {
+    res.json({
+      status: 'ok',
+      service: 'Verification Backend API',
+      health: '/api/health',
+      timestamp: new Date().toISOString(),
+    });
+  });
   app.get('*', (_req, res) => {
-    res.status(404).json({ error: 'Not found' });
+    res.status(404).json({ error: 'Route not found' });
   });
 }
 
