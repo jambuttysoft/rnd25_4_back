@@ -10,6 +10,8 @@ interface RawReceipt {
   loyaltyPointsSpent: number;
   cardFeeAmount: number;
   netGoodsAmount: number;
+  changeAmount: number;
+  paidByCard: number;
 }
 
 export async function processReceiptImage(imageBase64: string, filename: string): Promise<Receipt> {
@@ -33,11 +35,16 @@ export async function processReceiptImage(imageBase64: string, filename: string)
   "cashOut": false,
   "loyaltyPointsSpent": 0,
   "cardFeeAmount": 0,
-  "netGoodsAmount": 123.45
+  "netGoodsAmount": 123.45,
+  "changeAmount": 0,
+  "paidByCard": 0
 }
 
 Rules:
 - cashOut=true if any line item is a cash withdrawal, cash-back, or ATM disguised as discount/service fee
+- changeAmount = amount shown on the "Change" / "CHANGE" / "Решта" / "Сдача" line of the receipt. Set to 0 if no Change line is visible.
+- paidByCard = amount actually paid by card (or 0 if paid in cash). Often equals total but can be different if partial payment. If only one payment method is visible and it is card, set paidByCard = total.
+- CASH-OUT VARIANT 2 (card payment + cash change): set cashOut=true AND fill changeAmount with the amount of cash given back when paidByCard > 0 AND changeAmount is greater than 0. This indicates the till dispensed cash as "change" even though payment was by card. Example: Total $7.30, paid by card, Change $20.00 → cashOut=true, changeAmount=20.00, paidByCard=7.30.
 - netGoodsAmount = total - cashOutAmount - cardFeeAmount - loyaltyPointsSpent
 - Be precise with ALL amounts
 - Include ALL line items visible on the receipt`;
@@ -82,5 +89,7 @@ Rules:
     loyaltyPointsSpent: parsed.loyaltyPointsSpent,
     cardFeeAmount: parsed.cardFeeAmount,
     netGoodsAmount: parsed.netGoodsAmount,
+    changeAmount: parsed.changeAmount ?? 0,
+    paidByCard: parsed.paidByCard ?? 0,
   };
 }

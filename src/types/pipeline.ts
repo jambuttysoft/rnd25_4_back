@@ -20,6 +20,8 @@ export interface Receipt {
   loyaltyPointsSpent: number;
   cardFeeAmount: number;
   netGoodsAmount: number;
+  changeAmount?: number;
+  paidByCard?: number;
 }
 
 export interface PolicyFlag {
