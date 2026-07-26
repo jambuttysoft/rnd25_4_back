@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { checkPolicyCompliance } from '../services/rag.js';
-import { generateJournalEntry } from '../services/journal.js';
+import { computeCashOutAmount, generateJournalEntry } from '../services/journal.js';
 import type { Receipt, PipelineResult, CategoryBucket, ComplianceSummary } from '../types/pipeline.js';
 
 export const pipelineRouter = Router();
@@ -41,7 +41,9 @@ pipelineRouter.post('/run', async (req, res, next) => {
     const result: PipelineResult = {
       byCategory, totalExpenses,
       totalItems: receipt.lineItems.length,
-      cashOutDetected, policyFlags: flags,
+      cashOutDetected,
+      cashOutAmount: computeCashOutAmount(receipt),
+      policyFlags: flags,
       receiptId: receipt.id,
       complianceSummary,
       journalEntry: null,

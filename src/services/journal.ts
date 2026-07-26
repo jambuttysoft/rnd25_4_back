@@ -12,6 +12,25 @@ export const CATEGORY_ACCOUNT_CODES: Record<string, string> = {
   Other: '6490',
 };
 
+export const OWNER_DRAWINGS_CODE = '6500';
+export const PETTY_CASH_CODE = '1100';
+export const ACCOUNTS_PAYABLE_CODE = '2100';
+
+const CASH_OUT_KEYWORD_RE = /cash|withdrawal|atm/i;
+
+export function computeCashOutAmount(receipt: Receipt): number {
+  const changeAmount = receipt.changeAmount ?? 0;
+  const paidByCard = receipt.paidByCard ?? 0;
+  const cardChangeAmount = paidByCard > 0 && changeAmount > 0 ? changeAmount : 0;
+  const explicitAmount = receipt.lineItems
+    .filter((li) => CASH_OUT_KEYWORD_RE.test(li.description))
+    .reduce((sum, li) => sum + (li.amount ?? 0), 0);
+  const impliedAmount = receipt.cashOut
+    ? Math.max(0, receipt.total - receipt.netGoodsAmount - receipt.cardFeeAmount)
+    : 0;
+  return Math.max(cardChangeAmount, explicitAmount, impliedAmount);
+}
+
 export function generateJournalEntry(result: PipelineResult, receipt: Receipt): JournalEntry | null {
   if (!result.complianceSummary.isCompliant) return null;
 
@@ -27,19 +46,22 @@ export function generateJournalEntry(result: PipelineResult, receipt: Receipt): 
     });
   }
 
-  if (result.cashOutDetected) {
+  const cashOutAmount = +(result.cashOutAmount ?? 0).toFixed(2);
+  if (result.cashOutDetected && cashOutAmount > 0) {
     lines.push({
-      accountCode: '6510',
-      description: `Cash-out detected - ${receipt.merchant} - needs review`,
-      amount: 0,
+      accountCode: OWNER_DRAWINGS_CODE,
+      description: `Owner drawings - ${receipt.merchant}`,
+      amount: cashOutAmount,
       type: 'debit',
+      taxRate: 'GST Free',
     });
   }
 
+  const totalDebits = +lines.reduce((a, l) => a + l.amount, 0).toFixed(2);
   lines.push({
-    accountCode: '2100',
+    accountCode: ACCOUNTS_PAYABLE_CODE,
     description: `Accounts payable - ${receipt.merchant}`,
-    amount: +result.totalExpenses.toFixed(2),
+    amount: totalDebits,
     type: 'credit',
   });
 
@@ -48,7 +70,7 @@ export function generateJournalEntry(result: PipelineResult, receipt: Receipt): 
     receiptId: receipt.id,
     merchant: receipt.merchant,
     date: receipt.date,
-    total: result.totalExpenses,
+    total: totalDebits,
     lines,
     summary: `Expense allocation for ${receipt.merchant} - ${receipt.date}`,
     createdAt: new Date().toISOString(),
@@ -56,11 +78,12 @@ export function generateJournalEntry(result: PipelineResult, receipt: Receipt): 
 }
 
 export function journalEntryToCSV(entry: JournalEntry): string {
-  const header = 'AccountCode,Description,DebitAmount,CreditAmount';
+  const header = 'AccountCode,Description,DebitAmount,CreditAmount,TaxRate';
   const rows = entry.lines.map(l => {
     const debit = l.type === 'debit' ? l.amount.toFixed(2) : '';
     const credit = l.type === 'credit' ? l.amount.toFixed(2) : '';
-    return `"${l.accountCode}","${l.description.replace(/"/g, '""')}","${debit}","${credit}"`;
+    const taxRate = l.taxRate ?? '';
+    return `"${l.accountCode}","${l.description.replace(/"/g, '""')}","${debit}","${credit}","${taxRate}"`;
   });
   return [header, ...rows].join('\n');
 }

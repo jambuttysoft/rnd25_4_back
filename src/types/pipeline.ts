@@ -56,6 +56,7 @@ export interface JournalEntryLine {
   description: string;
   amount: number;
   type: "debit" | "credit";
+  taxRate?: string;
 }
 
 export interface JournalEntry {
@@ -81,6 +82,7 @@ export interface PipelineResult {
   totalExpenses: number;
   totalItems: number;
   cashOutDetected: boolean;
+  cashOutAmount: number;
   policyFlags: PolicyFlag[];
   receiptId: string;
   complianceSummary: ComplianceSummary;
