@@ -77,7 +77,7 @@ export interface CategoryBucket {
   itemIds: string[];
 }
 
-export interface PipelineResult {
+export interface WorkflowResult {
   byCategory: CategoryBucket[];
   totalExpenses: number;
   totalItems: number;
@@ -88,3 +88,5 @@ export interface PipelineResult {
   complianceSummary: ComplianceSummary;
   journalEntry: JournalEntry | null;
 }
+
+export type PipelineResult = WorkflowResult;

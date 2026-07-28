@@ -1,5 +1,5 @@
 import { callModel } from './llm.js';
-import type { Receipt } from '../types/pipeline.js';
+import type { Receipt } from '../types/workflow.js';
 
 interface RawReceipt {
   merchant: string;

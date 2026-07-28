@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
-import type { JournalEntry, JournalEntryLine, PipelineResult, Receipt } from '../types/pipeline.js';
+import type { JournalEntry, JournalEntryLine, WorkflowResult, Receipt } from '../types/workflow.js';
+type PipelineResult = WorkflowResult;
 
 export const CATEGORY_ACCOUNT_CODES: Record<string, string> = {
   Fuel: '6410',

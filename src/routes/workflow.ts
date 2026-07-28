@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { checkPolicyCompliance } from '../services/rag.js';
 import { computeCashOutAmount, generateJournalEntry } from '../services/journal.js';
-import type { Receipt, PipelineResult, CategoryBucket, ComplianceSummary } from '../types/pipeline.js';
+import type { Receipt, WorkflowResult, CategoryBucket, ComplianceSummary } from '../types/workflow.js';
 
-export const pipelineRouter = Router();
+export const workflowRouter = Router();
+export const pipelineRouter = workflowRouter;
 
-pipelineRouter.post('/run', async (req, res, next) => {
+workflowRouter.post('/run', async (req, res, next) => {
   try {
     const { receipt, threshold = 80 } = req.body as { receipt: Receipt; threshold?: number };
     if (!receipt) return res.status(400).json({ error: 'Missing receipt' });
@@ -38,7 +39,7 @@ pipelineRouter.post('/run', async (req, res, next) => {
       ruleChecks,
     };
 
-    const result: PipelineResult = {
+    const result: WorkflowResult = {
       byCategory, totalExpenses,
       totalItems: receipt.lineItems.length,
       cashOutDetected,

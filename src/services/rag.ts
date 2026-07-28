@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { callModel } from './llm.js';
-import type { Receipt, PolicyFlag, RuleCheck } from '../types/pipeline.js';
+import type { Receipt, PolicyFlag, RuleCheck } from '../types/workflow.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

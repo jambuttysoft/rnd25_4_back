@@ -6,7 +6,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { ocrRouter } from './routes/ocr.js';
 import { ragRouter } from './routes/rag.js';
-import { pipelineRouter } from './routes/pipeline.js';
+import { workflowRouter } from './routes/workflow.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -43,7 +43,8 @@ app.get('/api/health', (_req, res) => {
 // API routes
 app.use('/api/ocr', ocrRouter);
 app.use('/api/rag', ragRouter);
-app.use('/api/pipeline', pipelineRouter);
+app.use('/api/workflow', workflowRouter);
+app.use('/api/pipeline', workflowRouter);
 
 // In production, serve static frontend if available
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
